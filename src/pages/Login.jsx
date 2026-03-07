@@ -56,8 +56,8 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src="/HHlogo.png" alt="Health Harmony" className="w-16 h-16 rounded-xl mx-auto mb-4 shadow-md" />
-          <h1 className="text-2xl font-bold gradient-text">Health Harmony</h1>
+          <img src="/WellEarnedLogo.png" alt="WellEarned" className="w-16 h-16 rounded-xl mx-auto mb-4 shadow-md" />
+          <h1 className="text-2xl font-bold gradient-text">WellEarned</h1>
           <p className="text-gray-500 text-sm mt-1">Welcome back! Sign in to continue.</p>
         </div>
 

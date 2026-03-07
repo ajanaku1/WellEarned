@@ -1,4 +1,4 @@
-# Health Harmony — Architecture
+# WellEarned — Architecture
 
 ## System Overview
 

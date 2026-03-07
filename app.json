@@ -1,0 +1,79 @@
+{
+  "expo": {
+    "name": "WellEarned",
+    "slug": "wellearned",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0D0B"
+    },
+    "android": {
+      "package": "com.wellearned.app",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "ACCESS_FINE_LOCATION",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0D0B",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow WellEarned to access camera to log meals and analyze workout form"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow WellEarned to record voice mood check-ins"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow WellEarned to tag workout locations for AI insights"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#7BAF8E",
+          "sounds": []
+        }
+      ],
+      "expo-secure-store",
+      "expo-web-browser"
+    ],
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#7BAF8E",
+      "androidMode": "default",
+      "androidCollapsedTitle": "WellEarned"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "02ac1a82-d5e4-48ab-a10b-7601457c9cd7"
+      }
+    },
+    "owner": "dahunsi"
+  }
+}

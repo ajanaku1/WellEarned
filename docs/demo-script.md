@@ -1,68 +1,67 @@
-# Health Harmony — Demo Script (3 minutes)
+# WellEarned — Demo Script (3 minutes)
 
-## 0:00–0:15 — Hook
+## 0:00-0:15 — Hook
 
-> "What if your phone could be your nutritionist, personal trainer, and therapist — all powered by one AI? Meet Health Harmony, built entirely on Google Gemini 3, using six distinct API capabilities."
+> "What if your health app actually paid you to be healthy — and proved it on-chain? Meet WellEarned, an AI health coach powered by Gemini that verifies your real behavior on Solana before rewarding you with crypto."
 
-## 0:15–0:30 — Zero-Friction Demo Mode
+## 0:15-0:30 — Zero-Friction Demo Mode
 
-> "No sign-up needed. One click on 'Try Demo' and you're in with sample data pre-loaded."
+> "No sign-up needed. One tap on 'Try Demo as Guest' and you're in with sample data pre-loaded."
 
 **Actions:**
-- Show landing page with "Built on Gemini 3" badge and 6 capabilities grid
-- Click "Try Demo" — instant anonymous auth → dashboard
+- Show auth screen with prominent guest demo button
+- Tap "Try Demo as Guest" — instant anonymous auth, dashboard loads
 
-## 0:30–1:00 — Meal Analyzer (Vision + Structured Output)
+## 0:30-1:00 — Meal Analyzer (Vision + Structured Output + On-Chain)
 
-> "Snap a photo of any meal. Gemini Flash analyzes the image and returns structured JSON — calories, macros, health score, and healthier alternatives. No prompt hacking needed — the API's structured output schema guarantees valid data every time."
+> "Snap a photo of any meal. Gemini Flash analyzes the image and returns structured JSON — calories, macros, health score, and healthier alternatives. Behind the scenes, the meal is also logged on Solana with a SHA-256 content hash for verifiability."
 
 **Actions:**
 - Upload meal photo
-- Show loading → NutritionCard result
-- Highlight: schema-enforced JSON, no markdown fences
+- Show loading, then NutritionCard result
+- Highlight: schema-enforced JSON, on-chain logging
 
-## 1:00–1:40 — Live Webcam Workout Coach (Real-Time Vision)
+## 1:00-1:40 — Live Webcam Workout Coach (Real-Time Vision + On-Chain)
 
-> "This is the feature that changes everything. Turn on your webcam and Gemini analyzes your form in real-time — every 5 seconds, a frame goes to Gemini Flash with structured output. You get a live form score, rep counter, and correction tips overlaid on the video feed."
-
-**Actions:**
-- Navigate to Workout Coach → switch to "Live Mode"
-- Click "Start Live Session" → camera activates
-- Do 3-4 squats → show form score updating, reps incrementing, tips appearing
-- Hit stop → show workout summary (reuses same WorkoutFeedback component)
-- Emphasize: adaptive backoff on rate limits, wake lock prevents screen dimming
-
-## 1:40–2:00 — Mood Tracker (Audio NLU + Text Analysis)
-
-> "Record a voice memo or type a journal entry. Gemini analyzes audio for emotional state — mood score, energy level, detected emotions — with structured JSON output."
+> "Turn on your camera and Gemini analyzes your form in real-time — every 5 seconds, a frame goes to Gemini Flash. You get a live form score, rep counter, and correction tips. The workout summary is hashed and logged on Solana alongside Firestore."
 
 **Actions:**
-- Show pre-analyzed mood result
-- Highlight: dual modality (voice + text), pattern detection across days
+- Navigate to Workout Coach
+- Record a short workout, show form analysis
+- Emphasize: dual-write to Firestore + Solana
 
-## 2:00–2:30 — Chat Coach (Pro + Streaming + Function Calling + Grounding)
+## 1:40-2:00 — Mood Tracker (Audio NLU + On-Chain)
 
-> "Our chat coach runs on Gemini Pro with three advanced features. First, streaming — responses appear word by word. Second, function calling — when you ask about your nutrition, the model calls a tool to fetch your actual meal data, and you can see the tool call indicator in real-time. Third, Google Search grounding — for questions about general health topics, sources are cited below the response."
-
-**Actions:**
-- Navigate to Chat Coach
-- Click "How is my nutrition this week?"
-- Show tool call indicator: "Looking up recent meals..."
-- Show streaming response referencing actual logged data
-- Show grounding sources if present
-
-## 2:30–2:50 — AI Insights (Pro + Cross-Feature Reasoning)
-
-> "Gemini Pro analyzes 14 days of combined data across meals, workouts, and mood to find patterns you'd never spot yourself — like 'your mood is higher on days you exercise' or 'high-calorie meals correlate with low energy the next day.' All returned as structured JSON."
+> "Voice your feelings. Gemini analyzes your voice to detect emotions and mood score. That's all 3 activities logged — each one verified on Solana with its own PDA."
 
 **Actions:**
-- Show Dashboard → AI Insights section with insight cards
-- Highlight the "Pro" badge indicating model upgrade
+- Show mood analysis result
+- Highlight: 3 separate on-chain PDAs — meal, workout, mood
 
-## 2:50–3:00 — Closing Recap
+## 2:00-2:30 — Rewards + On-Chain Claim Verification
 
-> "That's six Gemini 3 capabilities in one app: multimodal vision, video understanding, audio NLU, streaming with function calling, structured output, and cross-feature reasoning. Plus live webcam coaching that feels like magic. Try it now — no sign-up required."
+> "Here's where Solana makes this real. You need at least 2 activities logged today to claim. Our Anchor program checks that the activity PDAs actually exist on-chain before releasing any reward. No activities, no tokens."
 
 **Actions:**
-- Quick montage of Gemini badges on each feature
-- End on landing page with URL
+- Show Rewards screen with "2/2 required" on Today section
+- Show Multiplier Status card: "3 active days per week needed to unlock streak multipliers — 1.5x, 2x, up to 3x"
+- Tap Claim button — show "Verifying on-chain..." state
+- Show successful claim with transaction signature
+- Show On-Chain Activity stats (totalMeals, totalWorkouts, totalMoods from chain)
+- Tap Explorer link — open real Solana transaction in browser
+
+## 2:30-2:50 — AI Insights + Chat Coach
+
+> "Gemini Pro analyzes 14 days of combined data to find patterns — like 'your mood is higher on days you exercise.' The chat coach uses function calling to reference your actual logged data, not generic advice."
+
+**Actions:**
+- Show Insights screen with cross-feature analysis
+- Quick chat demo with tool call indicator
+
+## 2:50-3:00 — Closing
+
+> "A real Anchor program on Solana devnet. Type-specific PDAs. On-chain claim verification. SHA-256 content hashing. Smart multiplier gating. Six Gemini capabilities. WellEarned — build habits, prove them on-chain, earn crypto."
+
+**Actions:**
+- Quick montage: activity logging, on-chain verification, claim, explorer
+- End on WellEarned logo

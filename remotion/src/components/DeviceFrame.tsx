@@ -1,80 +1,89 @@
-import React from "react";
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { colors } from "../styles";
+import { interpolate, useCurrentFrame, spring, useVideoConfig } from 'remotion';
+import { C } from '../constants';
 
-interface DeviceFrameProps {
+type Props = {
   children: React.ReactNode;
-  delay?: number;
-  width?: number;
-  height?: number;
-}
+  enterDelay?: number;
+  scale?: number;
+};
 
-export const DeviceFrame: React.FC<DeviceFrameProps> = ({
-  children,
-  delay = 0,
-  width = 580,
-  height = 400,
-}) => {
+export const DeviceFrame: React.FC<Props> = ({ children, enterDelay = 0, scale = 1 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const scale = spring({
-    frame: frame - delay,
+  const entrance = spring({
+    frame: frame - enterDelay,
     fps,
-    config: { damping: 14, stiffness: 80, mass: 0.8 },
+    config: { damping: 26, stiffness: 50, mass: 1.3 },
   });
+  const translateY = interpolate(entrance, [0, 1], [50, 0]);
+  const opacity = interpolate(entrance, [0, 1], [0, 1]);
+  const scaleIn = interpolate(entrance, [0, 1], [0.92, 1]);
+
+  const phoneWidth = 320 * scale;
+  const phoneHeight = 680 * scale;
 
   return (
     <div
       style={{
-        transform: `scale(${scale})`,
-        width,
-        borderRadius: 16,
-        overflow: "hidden",
-        boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)",
+        width: phoneWidth,
+        height: phoneHeight,
+        borderRadius: 40 * scale,
+        border: `2px solid rgba(240,237,232,0.12)`,
+        background: C.surface,
+        overflow: 'hidden',
+        position: 'relative',
+        boxShadow: `0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(123,175,142,0.08)`,
+        transform: `translateY(${translateY}px) scale(${scaleIn})`,
+        opacity,
       }}
     >
-      {/* Browser chrome */}
+      {/* Notch */}
       <div
         style={{
-          height: 36,
-          background: "#1e293b",
-          display: "flex",
-          alignItems: "center",
-          padding: "0 14px",
-          gap: 8,
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 120 * scale,
+          height: 28 * scale,
+          background: '#000',
+          borderBottomLeftRadius: 16 * scale,
+          borderBottomRightRadius: 16 * scale,
+          zIndex: 10,
+        }}
+      />
+      {/* Status bar */}
+      <div
+        style={{
+          height: 44 * scale,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: `0 ${20 * scale}px`,
+          fontSize: 11 * scale,
+          color: C.inkSoft,
+          fontFamily: 'system-ui',
+          fontWeight: 600,
+          zIndex: 5,
+          position: 'relative',
         }}
       >
-        <div style={{ display: "flex", gap: 6 }}>
-          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ef4444" }} />
-          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#eab308" }} />
-          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#22c55e" }} />
-        </div>
-        <div
-          style={{
-            flex: 1,
-            height: 22,
-            borderRadius: 6,
-            background: "#0f172a",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginLeft: 16,
-          }}
-        >
-          <span style={{ fontSize: 11, color: colors.whiteAlpha40, fontFamily: "sans-serif" }}>
-            healthharmony.app
-          </span>
-        </div>
+        <span>9:41</span>
+        <span style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+          <span>●●●●</span>
+          <span>🔋</span>
+        </span>
       </div>
-
-      {/* App content */}
+      {/* Screen content */}
       <div
         style={{
-          height,
-          background: "#f8fafc",
-          overflow: "hidden",
-          position: "relative",
+          position: 'absolute',
+          top: 44 * scale,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: 'hidden',
         }}
       >
         {children}

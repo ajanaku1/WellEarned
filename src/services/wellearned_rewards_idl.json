@@ -1,0 +1,123 @@
+{
+  "version": "0.1.0",
+  "name": "wellearned_rewards",
+  "instructions": [
+    {
+      "name": "initializeUser",
+      "accounts": [
+        { "name": "userRewardAccount", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "claimDailyReward",
+      "accounts": [
+        { "name": "userRewardAccount", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": false, "isSigner": true }
+      ],
+      "args": [
+        { "name": "day", "type": "string" },
+        { "name": "streak", "type": "u32" },
+        { "name": "reward", "type": "u64" }
+      ]
+    },
+    {
+      "name": "logMeal",
+      "accounts": [
+        { "name": "activityEntry", "isMut": true, "isSigner": false },
+        { "name": "userRewardAccount", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "day", "type": "string" },
+        { "name": "contentHash", "type": { "array": ["u8", 32] } },
+        { "name": "healthScore", "type": "u8" },
+        { "name": "calories", "type": "u16" }
+      ]
+    },
+    {
+      "name": "logWorkout",
+      "accounts": [
+        { "name": "activityEntry", "isMut": true, "isSigner": false },
+        { "name": "userRewardAccount", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "day", "type": "string" },
+        { "name": "contentHash", "type": { "array": ["u8", 32] } },
+        { "name": "formScore", "type": "u8" },
+        { "name": "durationSecs", "type": "u16" }
+      ]
+    },
+    {
+      "name": "logMood",
+      "accounts": [
+        { "name": "activityEntry", "isMut": true, "isSigner": false },
+        { "name": "userRewardAccount", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "day", "type": "string" },
+        { "name": "contentHash", "type": { "array": ["u8", 32] } },
+        { "name": "moodScore", "type": "u8" },
+        { "name": "unused", "type": "u16" }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "UserRewardAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "authority", "type": "publicKey" },
+          { "name": "streak", "type": "u32" },
+          { "name": "totalEarned", "type": "u64" },
+          { "name": "lastClaimDay", "type": "string" },
+          { "name": "totalMeals", "type": "u32" },
+          { "name": "totalWorkouts", "type": "u32" },
+          { "name": "totalMoods", "type": "u32" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "ActivityEntry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "authority", "type": "publicKey" },
+          { "name": "activityType", "type": { "defined": "ActivityType" } },
+          { "name": "day", "type": "string" },
+          { "name": "contentHash", "type": { "array": ["u8", 32] } },
+          { "name": "score", "type": "u8" },
+          { "name": "extra", "type": "u32" },
+          { "name": "timestamp", "type": "i64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ActivityType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          { "name": "Meal" },
+          { "name": "Workout" },
+          { "name": "Mood" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "AlreadyClaimed", "msg": "Already claimed today" },
+    { "code": 6001, "name": "InsufficientActivities", "msg": "Need at least 2 activities logged today to claim" }
+  ]
+}

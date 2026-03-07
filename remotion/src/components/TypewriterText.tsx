@@ -1,74 +1,30 @@
-import React from "react";
-import { useCurrentFrame, interpolate } from "remotion";
-import { fonts } from "../styles";
+import { interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
 
-interface TypewriterTextProps {
+type Props = {
   text: string;
-  delay?: number;
-  speed?: number; // frames per character
-  fontSize?: number;
-  color?: string;
-  fontWeight?: number;
-  showCursor?: boolean;
-  fontFamily?: string;
+  startFrame?: number;
+  speed?: number;
   style?: React.CSSProperties;
-}
+};
 
-export const TypewriterText: React.FC<TypewriterTextProps> = ({
+export const TypewriterText: React.FC<Props> = ({
   text,
-  delay = 0,
-  speed = 2,
-  fontSize = 72,
-  color = "#ffffff",
-  fontWeight = 700,
-  showCursor = true,
-  fontFamily = fonts.heading,
+  startFrame = 0,
+  speed = 1.5,
   style = {},
 }) => {
   const frame = useCurrentFrame();
-
-  const elapsed = Math.max(0, frame - delay);
-  const charsToShow = Math.min(
-    Math.floor(elapsed / speed),
-    text.length
-  );
-
+  const elapsed = Math.max(0, frame - startFrame);
+  const charsToShow = Math.min(Math.floor(elapsed * speed), text.length);
   const displayText = text.slice(0, charsToShow);
-  const isTyping = charsToShow < text.length && elapsed > 0;
-  const isDone = charsToShow >= text.length;
-
-  // Blinking cursor
-  const cursorOpacity = isDone
-    ? interpolate(Math.sin(frame * 0.15), [-1, 1], [0, 1])
-    : isTyping
-    ? 1
-    : 0;
+  const showCursor = elapsed > 0 && charsToShow < text.length;
 
   return (
-    <div
-      style={{
-        fontSize,
-        fontWeight,
-        color,
-        fontFamily,
-        letterSpacing: "-0.02em",
-        whiteSpace: "pre",
-        ...style,
-      }}
-    >
+    <span style={style}>
       {displayText}
       {showCursor && (
-        <span
-          style={{
-            opacity: cursorOpacity,
-            color,
-            fontWeight: 300,
-            marginLeft: 2,
-          }}
-        >
-          |
-        </span>
+        <span style={{ opacity: Math.sin(frame * 0.3) > 0 ? 1 : 0, color: 'inherit' }}>|</span>
       )}
-    </div>
+    </span>
   );
 };

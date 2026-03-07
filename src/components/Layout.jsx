@@ -49,8 +49,8 @@ export default function Layout({ children }) {
       {/* Mobile top bar */}
       <div className="md:hidden flex items-center justify-between bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center gap-2">
-          <img src="/HHlogo.png" alt="Health Harmony" className="w-8 h-8 rounded-lg" />
-          <span className="font-semibold text-sm gradient-text">Health Harmony</span>
+          <img src="/WellEarnedLogo.png" alt="WellEarned" className="w-8 h-8 rounded-lg" />
+          <span className="font-semibold text-sm gradient-text">WellEarned</span>
         </div>
         <div className="flex items-center gap-3">
           <Link to="/profile" className="text-xs text-gray-500 truncate max-w-[120px] hover:text-emerald-600 transition-colors min-h-[44px] flex items-center">{displayName}</Link>
@@ -65,9 +65,9 @@ export default function Layout({ children }) {
       {/* Desktop sidebar */}
       <aside className="hidden md:flex md:flex-col md:w-64 bg-white border-r border-gray-200 min-h-screen p-4">
         <div className="flex items-center gap-3 px-3 py-4 mb-6">
-          <img src="/HHlogo.png" alt="Health Harmony" className="w-10 h-10 rounded-xl" />
+          <img src="/WellEarnedLogo.png" alt="WellEarned" className="w-10 h-10 rounded-xl" />
           <div>
-            <h1 className="font-bold text-lg gradient-text">Health Harmony</h1>
+            <h1 className="font-bold text-lg gradient-text">WellEarned</h1>
             <p className="text-xs text-gray-400">AI Wellness Coach</p>
           </div>
         </div>

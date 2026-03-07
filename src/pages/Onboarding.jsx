@@ -77,7 +77,7 @@ export default function Onboarding() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 px-4 py-8">
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
-          <img src="/HHlogo.png" alt="Health Harmony" className="w-14 h-14 rounded-xl mx-auto mb-3 shadow-md" />
+          <img src="/WellEarnedLogo.png" alt="WellEarned" className="w-14 h-14 rounded-xl mx-auto mb-3 shadow-md" />
           <h1 className="text-2xl font-bold gradient-text">Welcome, {firstName}!</h1>
           <p className="text-gray-500 text-sm mt-1">Let&apos;s personalize your wellness journey</p>
         </div>

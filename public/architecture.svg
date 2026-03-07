@@ -21,7 +21,7 @@
   <rect width="900" height="560" rx="16" fill="#fafafa"/>
 
   <!-- Title -->
-  <text x="450" y="35" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#111827">Health Harmony — System Architecture</text>
+  <text x="450" y="35" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#111827">WellEarned — System Architecture</text>
 
   <!-- TOP LAYER: React SPA -->
   <rect x="40" y="55" width="820" height="130" rx="16" fill="white" stroke="#e5e7eb" stroke-width="1.5" filter="url(#shadow)"/>

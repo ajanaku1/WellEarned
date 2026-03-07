@@ -1,6 +1,6 @@
 # Gemini 3 Integration Summary
 
-Health Harmony is an AI-powered wellness app that leverages six distinct capabilities of Google's Gemini 3 API across every core feature.
+WellEarned is an AI-powered wellness app that leverages six distinct capabilities of Google's Gemini 3 API across every core feature.
 
 **1. Multimodal Vision (Meal Analysis)** — Users photograph meals and Gemini 3 Flash's vision model identifies ingredients, estimates calories and macronutrients, scores nutritional quality, and suggests healthier alternatives, all from a single image with structured JSON output.
 

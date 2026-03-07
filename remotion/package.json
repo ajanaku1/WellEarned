@@ -1,22 +1,22 @@
 {
-  "name": "healthharmony-demo-video",
+  "name": "remotion",
   "version": "1.0.0",
-  "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "studio": "npx remotion studio src/index.ts",
-    "render": "npx remotion render src/index.ts HealthHarmonyDemo out/demo.mp4",
-    "render:gif": "npx remotion render src/index.ts HealthHarmonyDemo out/demo.gif"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "@remotion/cli": "4.0.242",
-    "@remotion/player": "4.0.242",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "remotion": "4.0.242"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "typescript": "^5.7.0"
+    "@remotion/cli": "^4.0.434",
+    "@remotion/player": "^4.0.434",
+    "@types/react": "^19.2.14",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.434",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,6 +1,14 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
+import 'dotenv/config'
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '')
+function getGeminiClient() {
+  const apiKey =
+    process.env.GEMINI_API_KEY ||
+    process.env.EXPO_PUBLIC_GEMINI_API_KEY ||
+    ''
+  if (!apiKey) return null
+  return new GoogleGenerativeAI(apiKey)
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -8,6 +16,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    const genAI = getGeminiClient()
+    if (!genAI) {
+      return res.status(500).json({ error: 'API key not found. Set GEMINI_API_KEY in your environment.' })
+    }
+
     const { history, systemPrompt, model, tools, toolContext, generationConfig } = req.body
 
     const modelConfig = { model: model || 'gemini-3-flash-preview' }

@@ -1,52 +1,43 @@
-import React from "react";
-import { interpolate, useCurrentFrame, Easing } from "remotion";
+import { interpolate, useCurrentFrame, spring, useVideoConfig } from 'remotion';
 
-interface FadeSlideProps {
+type Props = {
   children: React.ReactNode;
-  direction?: "up" | "down" | "left" | "right";
   delay?: number;
-  duration?: number;
+  direction?: 'up' | 'down' | 'left' | 'right';
   distance?: number;
   style?: React.CSSProperties;
-}
+};
 
-export const FadeSlide: React.FC<FadeSlideProps> = ({
+export const FadeSlide: React.FC<Props> = ({
   children,
-  direction = "up",
   delay = 0,
-  duration = 20,
-  distance = 40,
+  direction = 'up',
+  distance = 24,
   style = {},
 }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
-  const opacity = interpolate(frame, [delay, delay + duration], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
+  const progress = spring({
+    frame: frame - delay,
+    fps,
+    config: { damping: 28, stiffness: 60, mass: 1.2 },
   });
 
-  const rawOffset = interpolate(frame, [delay, delay + duration], [distance, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
-  });
+  const translate = interpolate(progress, [0, 1], [distance, 0]);
+  const opacity = interpolate(progress, [0, 1], [0, 1]);
 
-  const translateMap: Record<string, string> = {
-    up: `translateY(${rawOffset}px)`,
-    down: `translateY(${-rawOffset}px)`,
-    left: `translateX(${rawOffset}px)`,
-    right: `translateX(${-rawOffset}px)`,
-  };
+  const transform =
+    direction === 'up'
+      ? `translateY(${translate}px)`
+      : direction === 'down'
+        ? `translateY(${-translate}px)`
+        : direction === 'left'
+          ? `translateX(${translate}px)`
+          : `translateX(${-translate}px)`;
 
   return (
-    <div
-      style={{
-        opacity,
-        transform: translateMap[direction],
-        ...style,
-      }}
-    >
+    <div style={{ transform, opacity, ...style }}>
       {children}
     </div>
   );

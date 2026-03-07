@@ -58,8 +58,8 @@ export default function Landing() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src="/HHlogo.png" alt="Health Harmony" className="w-8 h-8 rounded-lg" />
-            <span className="font-bold text-lg gradient-text">Health Harmony</span>
+            <img src="/WellEarnedLogo.png" alt="WellEarned" className="w-8 h-8 rounded-lg" />
+            <span className="font-bold text-lg gradient-text">WellEarned</span>
           </div>
           <div className="flex items-center gap-3">
             <a href="/demo" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors min-h-[44px] flex items-center px-2">
@@ -183,7 +183,7 @@ export default function Landing() {
             Start Your Wellness Journey Today
           </h2>
           <p className="mt-4 text-emerald-100 text-lg max-w-xl mx-auto">
-            Join Health Harmony and let Gemini 3 AI help you build lasting healthy habits. Free to use, always.
+            Join WellEarned and let Gemini 3 AI help you build lasting healthy habits. Free to use, always.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
@@ -211,8 +211,8 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
-              <img src="/HHlogo.png" alt="Health Harmony" className="w-7 h-7 rounded" />
-              <span className="font-semibold text-white">Health Harmony</span>
+              <img src="/WellEarnedLogo.png" alt="WellEarned" className="w-7 h-7 rounded" />
+              <span className="font-semibold text-white">WellEarned</span>
               <span className="text-xs text-gray-500 ml-2">Built on Gemini 3</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-gray-400">
@@ -221,7 +221,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} Health Harmony. All rights reserved.
+            &copy; {new Date().getFullYear()} WellEarned. All rights reserved.
           </div>
         </div>
       </footer>

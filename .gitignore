@@ -1,9 +1,55 @@
-node_modules
-dist
-.env
-.env.local
-*.local
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+/ios
+/android
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+firebase-debug.log
+
+# macOS
 .DS_Store
-.vercel
-remotion/node_modules
-remotion/out
+*.pem
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+.keys/
+
+# Solana build artifacts & keypairs
+target/
+programs/wellearned-rewards/target/
+*-keypair.json
+
+# Remotion render output
+remotion/out/
+
+# typescript
+*.tsbuildinfo
